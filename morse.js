@@ -20,32 +20,35 @@ function generateQuestion() {
 	var word = wordArray[Math.floor(Math.random() * 1000)];
 
 
-	document.getElementById('word').innerHTML = word;
-	
+
+
 
 
 }
 
 
 var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://mjohnson196.github.io/words.json', true);
+xhr.send(null);
 xhr.onreadystatechange = function() {
     if (xhr.readyState == XMLHttpRequest.DONE) {
     	word = JSON.parse(xhr.responseText);
-    	
-    	
 
-    	
+
+
+
 
     }
 }
 
 
 
-xhr.open('GET', 'https://mjohnson196.github.io/words.json', true);
-xhr.send(null);
+
 
 function checkAnswer() {
 
 }
 
+function giveUp() {
 
+}
