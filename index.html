@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Make It Permanent</title>
+<title>Make It Permanent</title>
+	<!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+       <!-- Compiled and minified CSS -->
+ 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 
-	<link rel="stylesheet" type="text/css" href="styles.css">
+      <link rel="stylesheet" type="text/css" href="material-style.css"></li>
 
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 <body>
+<ul id="slide-out" class="side-nav">
+	<li>
+		<div class="row">
+	        <div class="input-field col s12">
+	          <input id="username" type="text" class="validate">
+	          <label for="username">Username</label>
+	        </div>
+  	    </div>
+	</li>
+	<li>
+		<div class="row">
+	        <div class="input-field col s12">
+	          <input id="password" type="password" class="validate">
+	          <label for="password">Password</label>
+	        </div>
+  	    </div>
+	</li>
+</ul>
+<div class="row problem-section">
+<a href="#" data-activates="slide-out" class="button-collapse ui-white"><i class="material-icons">menu</i></a>
 
-<!-- Header -->
-<div class="row header">
-	<h1>Practice Makes Permanent</h1>
-</div>
-
-<!-- Activity Tiles -->
-<div class="row tiles">
-<div class="col-xs-0 col-md-1"></div>
-  <div class="col-xs-12 col-md-5">
-  <a href="base-conversion.html">
-  	<div class="card" id="conversions">
-		<h2>Base Conversions</h2>
+<div class="valign-wrapper">
+	<div class="col s12 m12 l12">
+		<div>
+			<h1 id="morse" class="valign center-align">Practice Makes Permanent</h1>
+		</div>
 	</div>
-  </a>
-  	
-  </div>
-  <div class="col-xs-12 col-md-5">
-  <a href="morse-code.html">
-  	<div class="card" id="conversions">
-		<h2>Morse Code</h2>
-	</div>
-  </a>
-  </div>
-<div class="col-xs-0 col-md-1"></div>
 </div>
+</div>
+<div class="row">
 
-<script type="text/javascript" src="script.js"></script>
+     <div class="col s12 m6 icon-block">
+        <!-- Promo Content 1 goes here -->
+        <h2 class="center">Base Conversion</h2>
+
+     </div>
 
 
+     <div class="col s12 m6 icon-block">
+        <!-- Promo Content 2 goes here -->
+         <h2 class="center">Morse Code</h2>
 
+   	 </div>
+
+</div>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="ui_script.js"></script>
+</body>
 </body>
 </html>

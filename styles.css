@@ -24,6 +24,10 @@ h2{
 	text-decoration: none !important;
 	color: inherit !important;
 }
+h1{
+	margin: 40px;
+	color: blue;
+}
 .home {
 	float: left;
 	margin: 20px;
@@ -50,7 +54,13 @@ h2{
 	text-align: center;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.card:hover {
+	margin-top: +20px;
+}
 #answerKey {
 	display: inline;
 	font-weight: bold;
+}
+.table{
+	width: 200px;
 }
