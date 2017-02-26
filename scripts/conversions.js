@@ -70,12 +70,12 @@ function checkAnswer () { // Here I
 		' answer: ' + answer + ' Type: ' + (typeof answer)
 		);
 	if(answer.toUpperCase() == userAnswer.toUpperCase()){
-		correct.style.color = 'green'; // This is how 
+		correct.style.color = '#43a047'; // This is how 
 		correct.innerHTML = 'Correct! ';
 		correct.style.display = 'inline';
 	
 	}else {
-		correct.style.color = 'red';
+		correct.style.color = '#ec407a';
 		correct.innerHTML = 'Incorrect, the answer was ' + answer;
 		correct.style.display = 'inline';
 	}
