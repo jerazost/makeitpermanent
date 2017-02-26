@@ -1,42 +1,30 @@
-var result = {}, lValues, lLength;
-var wordArray;
-var correct; //need to include addElemById;
-var next; //need to include addElemById;
-
-
+var wordArray = [];
+var lValues = [{key:"a", value:".-"},{key:"b", value:"-..."}, {key: "c", value: "-.-."}, {key: "d", value: "-.."}, {key: "e", value: "."}, {key: "f", value: "..-."},
+{key:"g", value: "--.-"}, {key: "h", value: "...."}, {key: "i", value: ".."}, {key: "j", value: ".---"}, {key:"k", value: "-.-"}, {key:"l", value: ".-.."},
+{key: "m", value: "--"}, {key:"n", value: "-."}, {key: "o", value: "---"}, {key: "p", value: ".--."}, {key: "q", value: "--.-"}, {key: "r", value: ".-."},
+{key: "s", value: "..."}, {key: "t", value: "-"}, {key: "u", value: "..-"}, {key: "v", value: "...-"}, {key: "w", value: ".--"}, {key: "x", value: "-..-"},
+{key: "y", value: "-.--"}, {key: "z", value: "--.."}];
 
 window.onload = function () {
+	
+	$.getJSON( "https://github.com/fersot100/makeitpermanent/blob/master/scripts/words.json", function(data) {
+	  	$.each( data, function(value) {
+   		 	wordArray.push(value);
+ 		});
+
+	});
 	generateQuestion();
 }
 
-
 function generateQuestion() {
-	answer = getAnswer();
-	//answer.value = '';
-
+	
 	var word = wordArray[Math.floor(Math.random() * 1000)];
-
-
-
-
-
+	console.log(word);
+	var morse = document.getElementById('morse');
+	morse.innerHTML = convertToMorse(word);
 
 }
 
-
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://mjohnson196.github.io/words.json', true);
-xhr.send(null);
-xhr.onreadystatechange = function() {
-    if (xhr.readyState == XMLHttpRequest.DONE) {
-    	word = JSON.parse(xhr.responseText);
-
-
-
-
-
-    }
-}
 function convertToMorse(regString){
 	var morseString , currentChar;
 	for (var i = 0; i < regString.length(); i++){
