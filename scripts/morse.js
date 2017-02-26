@@ -3,14 +3,11 @@ var wordArray;
 var correct; //need to include addElemById;
 var next; //need to include addElemById;
 
-function getAnswer() {
 
-	var answer = document.getElementById('answer'); //melanie needs to create this html element
 
-	return answer
+window.onload = function () {
+	generateQuestion();
 }
-
-
 
 
 function generateQuestion() {
@@ -40,15 +37,24 @@ xhr.onreadystatechange = function() {
 
     }
 }
-
-
-
-
-
+function convertToMorse(regString){
+	var morseString , currentChar;
+	for (var i = 0; i < regString.length(); i++){
+		currentChar = regString.charAt(i);
+		for (var j = 0; j < translations.length(); j++){
+			if (currentChar == translations[j].key){
+				morseString.concat(translations[j].value);
+				break;
+			}
+		}
+	}
+	return morseString;
+}
 function checkAnswer() {
 
 }
-
 function giveUp() {
 
+}
+function getAnswer() {
 }
