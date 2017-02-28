@@ -3,24 +3,28 @@
 <head>
 <title>Make It Permanent</title>
 	<!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-       <!-- Compiled and minified CSS -->
+ <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       <!--Import materialize.css-->
+      <!-- Compiled and minified CSS -->
  	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-
-      <link rel="stylesheet" type="text/css" href="material-style.css"></li>
-
+      <link rel="stylesheet" type="text/css" href="css/material-style.css"></li>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 </head>
 <body>
 <ul id="slide-out" class="side-nav">
 	<li>
 		<div class="row">
+			<div class="col s12">
+				<h4>Sign In</h4>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="row">
 	        <div class="input-field col s12">
-	          <input id="username" type="text" class="validate">
-	          <label for="username">Username</label>
+	          <input id="user" type="email">
+	          <label for="user">Username</label>
 	        </div>
   	    </div>
 	</li>
@@ -32,42 +36,63 @@
 	        </div>
   	    </div>
 	</li>
+	<li>
+	<div class="container">
+		 <div class="col s6 m6 l6">
+		 <button class="btn waves-effect waves-light center" onclick="createUser()">sign in
+   			 <i class="material-icons right">send</i>
+ 		 </button>
+ 		 </div>
+ 		  <div class="col s6 m6 l6">
+		 <button class="btn waves-effect waves-light center" onclick="createUser()">Create
+   			 <i class="material-icons right">create</i>
+ 		 </button>
+ 		 </div>
+ 	</div>
+	</li>
+	</div>
 </ul>
-<div class="row problem-section">
-<a href="#" data-activates="slide-out" class="button-collapse ui-white"><i class="material-icons">menu</i></a>
-
-<div class="valign-wrapper">
+<div class="row problem-section valign-wrapper">
+<a href="#" data-activates="slide-out" class="button-collapse ui-white menu"><i class="material-icons medium">menu</i></a>
 	<div class="col s12 m12 l12">
 		<div>
 			<h1 id="morse" class="valign center-align">Practice Makes Permanent</h1>
 		</div>
 	</div>
 </div>
-</div>
 <div class="row">
-
-     <div class="col s12 m6 icon-block">
-        <!-- Promo Content 1 goes here -->
-        <a href="base-conversion.html">
-        <h2 class="center">Base Conversion</h2>
-        </a>
-
-     </div>
-
-
-     <div class="col s12 m6 icon-block">
-        <!-- Promo Content 2 goes here -->
-        <a href="morse-trainer.html">
-         <h2 class="center">Morse Code</h2>
-         </a>
-
-   	 </div>
-
+    <div class="col s12 m6 l4  offset-l2 icon-block">
+ 	<div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <h3>Base Conversions</h3>
+        </div>
+        <div class="card-action">
+          <a href="html/base-conversion.html">Convert Number Bases!</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col s12 m6 l4">
+	    <div class="card horizontal">
+	      <div class="card-stacked">
+	        <div class="card-content">
+	          <h3>Morse Code</h3>
+	        </div>
+	        <div class="card-action">
+	          <a href="html/morse-trainer.html">Translate Morse Code!</a>
+	        </div>
+	      </div>
+	    </div>
+    </div>
 </div>
 <!--Import jQuery before materialize.js-->
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-<script type="text/javascript" src="ui_script.js"></script>
+<script type="text/javascript" src="scripts/ui_script.js"></script>
+<script type="text/javascript" src="scripts/web-script.js"></script>
+
 </body>
 </body>
 </html>
