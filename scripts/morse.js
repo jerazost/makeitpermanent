@@ -43,16 +43,14 @@ function checkAnswer() {
 	if(answer.value.toLowerCase() == generatedWord){
 		result.innerHTML = 'Correct!';
 	} else {
-		result.innerHTML = 'Wrong! The word is ' + generatedWord;
+		result.innerHTML = 'Wrong! The word is <br/>' + "'" + generatedWord + "'";
 	}
 }
 function giveUp() {
 
 }
-function getAnswer() {
-}
+
 $("#main-btn").click(function() { // I change the text and then use that text to determine what the button does. If it says Submit I submit and vice versa
-	console.log('click');
 	if ($(this).html() == 'submit'){
 		checkAnswer();
 		$(this).html('next');
