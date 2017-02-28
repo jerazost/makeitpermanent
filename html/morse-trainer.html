@@ -153,7 +153,7 @@
 <div class="valign-wrapper">
 <div class="col s12 m12 l12">
 	<div>
-		<h1 id="morse" class="valign center-align ui-text">morse goes here</h1>
+		<h1 id="morse" class="valign center-align ui-text"></h1>
 	</div>
 </div>
 </div>
@@ -171,17 +171,16 @@
 </div>
 <div class="row">
 	<div class="container">
-		<div class="col s4 m2 l2 offset-s1 offset-m4 offset-l4">
-		 <button class="btn waves-effect waves-light" onclick="createUser()">submit
-   			 <i class="material-icons right">send</i>
- 		 </button>
- 		 </div>
- 		  <div class="col s2 m2 l2">
-		 <button class="btn waves-effect waves-light" onclick="createUser()">surrender
-   			 <i class="material-icons right">create</i>
- 		 </button>
- 		 </div>
+		<div class="col s4 m2 l2 offset-s3 offset-m4 offset-l4">
+		 	<button type="button" class="btn" id="main-btn">submit</button>
+ 		</div>
 	</div>
+</div>
+
+<div class="row">
+<div class="col s12 center">
+  <h5 id="result"></h5>
+</div>
 </div>
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
