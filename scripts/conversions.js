@@ -2,8 +2,16 @@ var rand, toType, fromType;
 var correct = document.getElementById('correct');
 var next = document.getElementById('next'); // Gets an html element and assigns it to next
 
+var options = {
+	binaryON: true,
+	octON: true,
+	decON: true,
+	hexON: true,
+	convertTool: false
+}
+
 function getAnswer() {
-	var answer = document.getElementById('answer'); // Gets an html element and assigns it to answer
+	var answer = document.getElementById('answer_input'); // Gets an html element and assigns it to answer
 	return answer;
 }
 function generateQuestion() { 
@@ -14,30 +22,49 @@ function generateQuestion() {
 	
 	var max = 225, min = 1, base , fromInt;
 	rand = Math.floor(Math.random() * (max - min) + min); //Math is part of javascript and gives you sweet functions
+	
+
 	do{
+		do{
 		fromType = Math.floor(Math.random() * (5 - 1) + 1);
 		toType = Math.floor(Math.random() * (5 - 1) + 1); // These generate random numbers to pick what the base is going to be and they get passed into the switch statement 
-	}while(fromType === toType);
-	switch(toType) {
-	    case 1:
-	    	base = 'Binary';
-	    	toType = 2;
-	        break;
-	    case 2:
-	    	base = 'Octal';
-	    	toType = 8;
-	        break;
-	    case 3:
-	    	base = 'Decimal';
-	    	toType = 10;
-	    	break;
-	    case 4:
-	    	base = 'Hex';
-	    	toType = 16;
-	    	break;
-	    default:
-	        alert('Error generating question');
-	}
+		}while(fromType === toType);
+		var repeat = true;
+		switch(toType) {
+		    case 1:
+		    	base = 'Binary';
+		    	toType = 2;
+		    	if(options.binaryON){
+		    		repeat = false;
+		    	}
+		        break;
+		    case 2:
+		    	base = 'Octal';
+		    	toType = 8;
+		    	if(options.octON){
+		    		repeat = false;
+		    	}
+		        break;
+		    case 3:
+		    	base = 'Decimal';
+		    	toType = 10;
+		    	if(options.decON){
+		    		repeat = false;
+		    	}
+		    	break;
+		    case 4:
+
+		    	base = 'Hex';
+		    	toType = 16;
+		    	if(options.hexON){
+		    		repeat = false;
+		    	}
+		    	break;
+		    default:
+		        alert('Error generating question');
+		}
+	}while(repeat);
+
 	switch(fromType) {
 	    case 1:
 	    	fromInt = rand.toString(2);
@@ -85,6 +112,7 @@ window.onload = function () { //Whenever website loads, it generates a question
 }
 
 $("#main-btn").click(function() { // I change the text and then use that text to determine what the button does. If it says Submit I submit and vice versa
+	console.log('click');
 	if ($(this).html() == 'Submit'){
 		checkAnswer();
 		$(this).html('Next');
