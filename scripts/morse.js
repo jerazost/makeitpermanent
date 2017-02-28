@@ -3,7 +3,7 @@ var translations = [{key:"a", value:".-"},{key:"b", value:"-..."}, {key: "c", va
 {key: "m", value: "--"}, {key:"n", value: "-."}, {key: "o", value: "---"}, {key: "p", value: ".--."}, {key: "q", value: "--.-"}, {key: "r", value: ".-."},
 {key: "s", value: "..."}, {key: "t", value: "-"}, {key: "u", value: "..-"}, {key: "v", value: "...-"}, {key: "w", value: ".--"}, {key: "x", value: "-..-"},
 {key: "y", value: "-.--"}, {key: "z", value: "--.."}];
-var word;
+var generatedWord;
 
 window.onload = function () {
 	
@@ -12,9 +12,9 @@ window.onload = function () {
 
 function generateQuestion() {
 	
-	word = wordArray[Math.floor(Math.random() * 1000)];
+	generatedWord = wordArray[Math.floor(Math.random() * 1000)];
 	var morse = document.getElementById('morse');
-	morse.innerHTML = convertToMorse(word);
+	morse.innerHTML = convertToMorse(generatedWord);
 
 }
 
@@ -35,7 +35,10 @@ function convertToMorse(regString){
 	return morseString;
 }
 function checkAnswer() {
+	var answer = document.getElementById('answer_input');
+	if(answer.value == generatedWord){
 
+	}
 }
 function giveUp() {
 
