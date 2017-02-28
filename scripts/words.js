@@ -1,4 +1,4 @@
-var words = ["the",
+var wordArray = ["the",
 "of",
 "to",
 "and",
