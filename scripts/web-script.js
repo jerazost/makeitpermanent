@@ -1,26 +1,17 @@
-function createNewUser() {
-    var xhttp = new XMLHttpRequest();
-    var userName = document.getElementById('username');
-    var pass = document.getElementById('password');
-    var body = {};
-    body.name = userName;
-    body.password = pass;
-    
-    var jsonBody = JSON.stringify(body);
-    xhttp.open("POST", "https://lit-lowlands-87980.herokuapp.com/users", false);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(jsonBody);
-    var response = JSON.parse(xhttp.responseText);
-    console.log(response);
-    
-}
 
 function createUser() {
     var body = {};
-    name = document.getElementById('username');
+    name = document.getElementById('user');
     password = document.getElementById('password');
-    body.name = name.innerHTML;
-    body.password = password.innerHTML;
+
+    
+    
+    body.name = name.value;
+    console.log('Name', name.value);
+    console.log('Password', password.value);
+    console.log('Body Name', body.name);
+
+    body.password = password.value;
     alert(JSON.stringify(body));
     $.ajax({
         type: "POST",
