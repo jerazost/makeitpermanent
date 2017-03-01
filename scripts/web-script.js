@@ -1,8 +1,8 @@
 
 function createUser() {
     var body = {};
-    name = document.getElementById('user');
-    password = document.getElementById('password');
+    var name = document.getElementById('user');
+    var password = document.getElementById('password');
 
     
     

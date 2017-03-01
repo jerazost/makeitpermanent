@@ -3,11 +3,13 @@ html {
 }
 .problem-section {
 	background-color: #009688; 
-	height: 20em;
+	height: 19em;
+}
+.toggle-switch > * {
+	display: inline;
 }
 .ui-white{
 	color: #f5f5f5;
-	font-size: 1.5em;
 }
 .menu {
 	list-style-type: none;
@@ -19,6 +21,9 @@ html {
 }
 #answer_input {
 	font-size: 2em;
+}
+.card .card-content {
+	padding: 9px; !important
 }
 #morse {
 	color: #f5f5f5;
