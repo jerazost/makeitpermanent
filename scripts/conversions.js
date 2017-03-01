@@ -24,12 +24,11 @@ function generateQuestion() {
 	rand = Math.floor(Math.random() * (max - min) + min); //Math is part of javascript and gives you sweet functions
 	
 
-	do{
 		do{
 		fromType = Math.floor(Math.random() * (5 - 1) + 1);
 		toType = Math.floor(Math.random() * (5 - 1) + 1); // These generate random numbers to pick what the base is going to be and they get passed into the switch statement 
 		}while(fromType === toType);
-		var repeat = true;
+
 		switch(toType) {
 		    case 1:
 		    	base = 'Binary';
@@ -63,7 +62,6 @@ function generateQuestion() {
 		    default:
 		        alert('Error generating question');
 		}
-	}while(repeat);
 
 	switch(fromType) {
 	    case 1:
