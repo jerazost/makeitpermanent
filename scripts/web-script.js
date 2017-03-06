@@ -5,6 +5,8 @@ function pushUserInfo(urlEnd) {
     var password = document.getElementById('password');
     var cookie;
 
+    body.name = name.value;
+    body.password = password.value;
 
     $.ajax({
 
@@ -16,15 +18,25 @@ function pushUserInfo(urlEnd) {
         contentType: 'application/json',
         data: JSON.stringify(body),
         success: function(data){
-          if(data.userToken){
-            var now = new Date();
-            var time = now.getTime();
-            var expireTime = time + 1000*36000; //10 hours
-            now.setTime(expireTime);
-            cookie = data.userToken;
-            document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
-            //alert(document.cookie)
-            //alert("cookie " + cookie);
+          if(data.success == 1){
+            if(data.userToken){
+              var now = new Date();
+              var time = now.getTime();
+              var expireTime = time + 1000*36000; //10 hours
+              now.setTime(expireTime);
+              cookie = data.userToken;
+              document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
+              alert('logged in')
+              } else {
+                alert(`Created account '${(JSON.stringify(data.doc.name))}'`)
+              }
+          }
+          else if(data.success == 0) {
+              alert('invalid username/password')
+          }
+          else{
+
+            alert(`User '${JSON.stringify(data.name)}' Already Exists`)
           }
 
         },
