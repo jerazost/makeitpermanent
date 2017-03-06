@@ -3,6 +3,7 @@ function pushUserInfo(urlEnd) {
     var body = {};
     var name = document.getElementById('user');
     var password = document.getElementById('password');
+    var cookie;
 
 ////////////////////////////
 
@@ -30,10 +31,19 @@ function pushUserInfo(urlEnd) {
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify(body),
-        success: function(data){alert(JSON.stringify(data))},
+        success: function(data){
+          if(data.userToken){
+            cookie = data.userToken;
+            document.cookie = `jwt=${cookie};`;
+            //alert(document.cookie)
+            //alert("cookie " + cookie);
+          }
+
+        },
         failure: function(jqXHR, textStatus, errorThrown) {
       alert(jqXHR.responseText || textStatus);
     }
+
 
 
 
