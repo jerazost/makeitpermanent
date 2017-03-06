@@ -5,23 +5,7 @@ function pushUserInfo(urlEnd) {
     var password = document.getElementById('password');
     var cookie;
 
-////////////////////////////
 
-
-
-
-
-/////////////////////////////
-
-    body.name = name.value;
-    body.password = password.value;
-    console.log('Name: ', name.value);
-    console.log('Password: ', password.value);
-    console.log('Body Name: ' , body.name);
-    console.log('Body password: ', body.password);
-
-
-    alert(JSON.stringify(body));
     $.ajax({
 
         type: 'POST',
@@ -33,8 +17,12 @@ function pushUserInfo(urlEnd) {
         data: JSON.stringify(body),
         success: function(data){
           if(data.userToken){
+            var now = new Date();
+            var time = now.getTime();
+            var expireTime = time + 1000*36000; //10 hours
+            now.setTime(expireTime);
             cookie = data.userToken;
-            document.cookie = `jwt=${cookie};`;
+            document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
             //alert(document.cookie)
             //alert("cookie " + cookie);
           }
