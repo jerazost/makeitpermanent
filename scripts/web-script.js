@@ -1,3 +1,13 @@
+$.support.cors = true
+
+$.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
+  options.crossDomain ={
+    crossDomain: true
+  };
+  options.xhrFields = {
+    withCredentials: true
+  };
+});
 
 function pushUserInfo(urlEnd) {
     var body = {};
@@ -11,8 +21,8 @@ function pushUserInfo(urlEnd) {
     $.ajax({
 
         type: 'POST',
-        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
-        //url: `http://localhost:3000/api/${urlEnd}`,
+        //url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        url: `http://localhost:3000/api/${urlEnd}`,
         crossDomain: true,
         dataType: 'json',
         contentType: 'application/json',
@@ -20,15 +30,17 @@ function pushUserInfo(urlEnd) {
         success: function(data){
           if(data.success == 1){
             if(data.userToken){
+              document.cookie = 'jwt' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
               var now = new Date();
               var time = now.getTime();
               var expireTime = time + 1000*36000; //10 hours
               now.setTime(expireTime);
               cookie = data.userToken;
               document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
-              alert('logged in')
+              document.getElementById("log-in").innerHTML = `Hello, ${name.value}`;
+
               } else {
-                alert(`Created account '${(JSON.stringify(data.doc.name))}'`)
+                alert(`Created account '${name.value}'`)
               }
           }
           else if(data.success == 0) {
@@ -43,16 +55,41 @@ function pushUserInfo(urlEnd) {
         failure: function(jqXHR, textStatus, errorThrown) {
       alert(jqXHR.responseText || textStatus);
     }
-
-
-
-
-    // }).done(function(data) {
-    //     alert(data);
-    // }).error(function (jqXHR, textStatus, errorThrown) {
-
     });
 }
+
+function loginUser(urlEnd) {
+    var body = {};
+    var cookie;
+
+    $.ajax({
+        type: 'GET',
+        //url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        url: `http://localhost:3000/api/${urlEnd}`,
+        crossDomain: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(body),
+        success: function(data){
+          if(data.success){
+            //alert(JSON.stringify(data))
+            if(data.userToken){
+              var now = new Date();
+              var time = now.getTime();
+              var expireTime = time + 1000*36000; //10 hours
+              now.setTime(expireTime);
+              cookie = data.userToken;
+              document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
+              document.getElementById("log-in").innerHTML = `Hello, ${data.userName}`;
+            }
+        }
+      },
+        failure: function(jqXHR, textStatus, errorThrown) {
+      alert(jqXHR.responseText || textStatus);
+    }
+    });
+}
+
 
 function pullUserInfo(urlEnd) {
     var body = {};
