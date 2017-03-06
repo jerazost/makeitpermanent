@@ -22,13 +22,15 @@ function pushUserInfo(urlEnd) {
 
     alert(JSON.stringify(body));
     $.ajax({
-        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+
         type: 'POST',
+        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        //url: `http://localhost:3000/api/${urlEnd}`,
         crossDomain: true,
         dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
+        contentType: 'application/json',
         data: JSON.stringify(body),
-        success: function(data){alert(data)},
+        success: function(data){alert(JSON.stringify(data))},
         failure: function(jqXHR, textStatus, errorThrown) {
       alert(jqXHR.responseText || textStatus);
     }
@@ -59,13 +61,15 @@ function pullUserInfo(urlEnd) {
 
     alert(JSON.stringify(body));
     $.ajax({
+        type: 'POST',
         url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
-        type: 'GET',
+        //url: `http://localhost:3000/api/${urlEnd}`,
+        crossDomain: true,
         contentType: 'application/json',
         data: JSON.stringify(body),
         success: (res) => {
-          console.log('HERES IS WHAT YOU GET BACK');
-          console.log(JSON.stringify(res)); //TODO: add stuff here
+          //console.log('HERES IS WHAT YOU GET BACK');
+          alert(JSON.stringify(res)); //TODO: add stuff here
         }
       }).error(function (jqXHR, textStatus, errorThrown) {
         alert(jqXHR.responseText || textStatus);
