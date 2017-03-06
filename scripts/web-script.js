@@ -21,8 +21,8 @@ function pushUserInfo(urlEnd) {
     $.ajax({
 
         type: 'POST',
-        //url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
-        url: `http://localhost:3000/api/${urlEnd}`,
+        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        //url: `http://localhost:3000/api/${urlEnd}`,
         crossDomain: true,
         dataType: 'json',
         contentType: 'application/json',
@@ -64,8 +64,8 @@ function loginUser(urlEnd) {
 
     $.ajax({
         type: 'GET',
-        //url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
-        url: `http://localhost:3000/api/${urlEnd}`,
+        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        //url: `http://localhost:3000/api/${urlEnd}`,
         crossDomain: true,
         dataType: 'json',
         contentType: 'application/json',
