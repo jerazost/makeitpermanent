@@ -21,6 +21,7 @@
 			</div>
 		</div>
 	</li>
+  <div class="container" id="loginInput">
 	<li>
 		<div class="row">
 	        <div class="input-field col s12">
@@ -37,16 +38,22 @@
 	        </div>
   	    </div>
 	</li>
+</div>
 	<li>
 	<div class="container">
 		 <div class="col s6 m6 l6">
-		 <button class="btn waves-effect waves-light center" onclick="pushUserInfo('authenticate')">sign in
+		 <button class="btn waves-effect waves-light center" id="login" onclick="pushUserInfo('authenticate')">sign in
    			 <i class="material-icons right">send</i>
  		 </button>
  		 </div>
  		  <div class="col s6 m6 l6">
-		 <button class="btn waves-effect waves-light center" onclick="pushUserInfo('users')">Create
+		 <button class="btn waves-effect waves-light center" id="createUser" onclick="pushUserInfo('users')">Create
    			 <i class="material-icons right">create</i>
+ 		 </button>
+ 		 </div>
+     <div class="col s6 m6 l6">
+		 <button class="btn waves-effect waves-light center" id="logout" onclick="logoutUser()">logout
+   			 <i class="material-icons right">perm_identity</i>
  		 </button>
  		 </div>
  	</div>

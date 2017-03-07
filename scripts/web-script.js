@@ -37,7 +37,10 @@ function pushUserInfo(urlEnd) {
               cookie = data.userToken;
               document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
               document.getElementById("log-in").innerHTML = `Hello, ${name.value}`;
-
+              $("#logout").show();
+              $("#createUser").hide();
+              $("#login").hide();
+              $("#loginInput").hide();
               } else {
                 alert(`Created account '${name.value}'`)
               }
@@ -81,6 +84,10 @@ function loginUser(urlEnd) {
               cookie = data.userToken;
               document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
               document.getElementById("log-in").innerHTML = `Hello, ${data.userName}`;
+              $("#logout").show();
+              $("#createUser").hide();
+              $("#login").hide();
+              $("#loginInput").hide();
             }
         }
       },
@@ -88,6 +95,11 @@ function loginUser(urlEnd) {
       alert(jqXHR.responseText || textStatus);
     }
     });
+}
+
+function logoutUser(urlEnd) {
+  document.cookie = 'jwt' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  location.reload();
 }
 
 
