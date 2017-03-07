@@ -21,7 +21,7 @@ function pushUserInfo(urlEnd) {
     $.ajax({
 
         type: 'POST',
-        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        url: `http://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
         //url: `http://localhost:3000/api/${urlEnd}`,
         dataType: 'json',
         contentType: 'application/json',
@@ -59,19 +59,20 @@ function pushUserInfo(urlEnd) {
 
 
 function loginUser(urlEnd) {
-    var body = {test: "hi"};
+    var body = {};
     var cookie;
 
     $.ajax({
         type: 'GET',
-        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        url: `http://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
         //url: `http://localhost:3000/api/${urlEnd}`,
         dataType: 'json',
+        headers: {"x-access-token": getCookie("jwt")},
         contentType: 'application/json',
         data: JSON.stringify(body),
         success: function(data){
-          if(data.success){
-            //alert(JSON.stringify(data))
+
+          if(data.success == 1){
             if(data.userToken){
               var now = new Date();
               var time = now.getTime();
@@ -108,7 +109,7 @@ function pullUserInfo(urlEnd) {
     alert(JSON.stringify(body));
     $.ajax({
         type: 'POST',
-        url: `https://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
+        url: `http://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
         //url: `http://localhost:3000/api/${urlEnd}`,
         crossDomain: true,
         contentType: 'application/json',
@@ -120,4 +121,10 @@ function pullUserInfo(urlEnd) {
       }).error(function (jqXHR, textStatus, errorThrown) {
         alert(jqXHR.responseText || textStatus);
     });
+}
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }
