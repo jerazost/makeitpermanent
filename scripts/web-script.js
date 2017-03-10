@@ -1,5 +1,6 @@
-$.support.cors = true
 
+
+$.support.cors = true
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   options.crossDomain ={
     crossDomain: true
@@ -9,7 +10,7 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
   };
 });
 
-function pushUserInfo(urlEnd) {
+function pushUserInfo(urlEnd) { //used to create a user
     var body = {};
     var name = document.getElementById('user');
     var password = document.getElementById('password');
@@ -30,17 +31,15 @@ function pushUserInfo(urlEnd) {
           if(data.success == 1){
             if(data.userToken){
               document.cookie = 'jwt' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+              document.cookie = 'user' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
               var now = new Date();
               var time = now.getTime();
               var expireTime = time + 1000*36000; //10 hours
               now.setTime(expireTime);
               cookie = data.userToken;
               document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
-              document.getElementById("log-in").innerHTML = `Hello, ${name.value}`;
-              $("#logout").show();
-              $("#createUser").hide();
-              $("#login").hide();
-              $("#loginInput").hide();
+              document.cookie = `user=${name.value};expires=${now.toGMTString()}`;
+              changeSign(`Hello, ${name.value}`);
               } else {
                 alert(`Created account '${name.value}'`)
               }
@@ -61,10 +60,11 @@ function pushUserInfo(urlEnd) {
 }
 
 
-function loginUser(urlEnd) {
+function loginUser(urlEnd) { //logs in user on page load
     var body = {};
     var cookie;
-
+    if(getCookie('user'))
+      changeSign(`Hello, ${getCookie("user")}`);
     $.ajax({
         type: 'GET',
         url: `http://lit-lowlands-87980.herokuapp.com/api/${urlEnd}`,
@@ -83,11 +83,8 @@ function loginUser(urlEnd) {
               now.setTime(expireTime);
               cookie = data.userToken;
               document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
-              document.getElementById("log-in").innerHTML = `Hello, ${data.userName}`;
-              $("#logout").show();
-              $("#createUser").hide();
-              $("#login").hide();
-              $("#loginInput").hide();
+              document.cookie = `user=${getCookie("user")};expires=${now.toGMTString()}`;
+
             }
         }
       },
@@ -97,13 +94,14 @@ function loginUser(urlEnd) {
     });
 }
 
-function logoutUser(urlEnd) {
-  document.cookie = 'jwt' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+function logoutUser(urlEnd) { //deletes users site cookies and refreshes page
+  deleteCookie('jwt');
+  deleteCookie('user');
   location.reload();
 }
 
 
-function pullUserInfo(urlEnd) {
+function pullUserInfo(urlEnd) { //NOT IN USE YET
     var body = {};
     var name = document.getElementById('user');
     var password = document.getElementById('password');
@@ -112,11 +110,6 @@ function pullUserInfo(urlEnd) {
 
     body.name = name.value;
     body.password = password.value;
-    console.log('Name', name.value);
-    console.log('Password', password.value);
-    console.log('Body Name', body.name);
-    console.log('Body password', body.password);
-
 
     alert(JSON.stringify(body));
     $.ajax({
@@ -135,8 +128,22 @@ function pullUserInfo(urlEnd) {
     });
 }
 
-function getCookie(name) {
+
+
+function getCookie(name) { //retrieves value of cookie by name of cookie
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function deleteCookie(name){ //deletes cookie passed in
+  document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+function changeSign(name){ //Changes sign in to username
+    document.getElementById("log-in").innerHTML = name;
+    $("#logout").show();
+    $("#createUser").hide();
+    $("#login").hide();
+    $("#loginInput").hide();
 }
