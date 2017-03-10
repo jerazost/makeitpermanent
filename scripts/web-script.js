@@ -39,7 +39,7 @@ function pushUserInfo(urlEnd) { //used to create a user
               cookie = data.userToken;
               document.cookie = `jwt=${cookie};expires=${now.toGMTString()}`;
               document.cookie = `user=${name.value};expires=${now.toGMTString()}`;
-              changeSign(`Hello, ${name.value}`);
+              changeSign(`Hello, ${name.value}`, false);
               } else {
                 alert(`Created account '${name.value}'`)
               }
@@ -140,10 +140,19 @@ function deleteCookie(name){ //deletes cookie passed in
   document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-function changeSign(name){ //Changes sign in to username
+function changeSign(name, auto = true){ //Changes sign in to username
     document.getElementById("log-in").innerHTML = name;
-    $("#logout").show();
-    $("#createUser").hide();
-    $("#login").hide();
-    $("#loginInput").hide();
+    if(!auto){
+      $("#logout").delay(700).fadeTo(500, 1);
+      $("#createUser").fadeOut(500);
+      $("#login").fadeOut(500);
+      $("#loginInput").fadeOut(500);
+    }
+    else {
+      $("#logout").show();
+      $("#createUser").hide();
+      $("#login").hide();
+      $("#loginInput").hide();
+    }
+
 }
