@@ -1,128 +1,199 @@
-var rand, toType, fromType;
-var correct = document.getElementById('correct');
-var next = document.getElementById('next'); // Gets an html element and assigns it to next
+const inputField = document.getElementById('answer_input');
+const problem = document.getElementById('Question');
+const boxes = document.getElementsByClassName('box');
+const submitBtn = document.getElementById('main-btn');
+const newQuestionButton = document.getElementById('new-btn');
 
-var options = {
-	binaryON: true,
-	octON: true,
-	decON: true,
-	hexON: true,
-	convertTool: false
+const ENTER_KEY_CODE = 13;
+const TEXT_STATE = 0;
+const NUMBER_STATE = 1;
+
+const B2 = 'Binary ';
+const B8 = 'Octal ';
+const B10 = 'Decimal ';
+const B16 = 'Hexadecimal ';
+
+//Global Variable declarations
+let problemNumber;
+let answerNumber;
+let fromBase;
+let toBase;
+let fString;
+let tString;
+let noneSelected = false;
+let state = TEXT_STATE;
+
+//Settings object bases: 2, 4, 8, 16 values from and to 
+let settings = {
+	from: [true, true, true, true],
+	to: [true, true, true, true]
 }
 
-function getAnswer() {
-	var answer = document.getElementById('answer_input'); // Gets an html element and assigns it to answer
-	return answer;
+//Event Listeners for checkboxes
+for(let i = 0; i < boxes.length; i++){
+	boxes[i].addEventListener('change', changeSettings);
 }
+//Event Listeners for submit and new question buttons
+submitBtn.addEventListener('click', ()=>{
+	readAndCheckInput();
+});
+newQuestionButton.addEventListener('click', ()=>{
+	generateQuestion();
+});
+
+//Event listener for pressing enter after typing an answer
+inputField.addEventListener('keypress', (event) => {
+	if (event.keyCode === ENTER_KEY_CODE){
+		if(state == TEXT_STATE){
+			generateQuestion();
+		}else{
+			readAndCheckInput();
+		}
+	}
+});
+
 function generateQuestion() { 
-	answer = getAnswer();
-	answer.value = '';
+	inputField.value = '';
 	correct.innerHTML = '';
 	correct.style.display = 'none'; // Initialize the html objects when question generates.
 	
-	var max = 225, min = 1, base , fromInt;
-	rand = Math.floor(Math.random() * (max - min) + min); //Math is part of javascript and gives you sweet functions
-	
+	var max = Math.pow(2, 16);
+	var min = Math.pow(2, 8);
 
-		do{
-		fromType = Math.floor(Math.random() * (5 - 1) + 1);
-		toType = Math.floor(Math.random() * (5 - 1) + 1); // These generate random numbers to pick what the base is going to be and they get passed into the switch statement 
-		}while(fromType === toType);
+	//Picks a number 1-4
+	fromBase = Math.floor(Math.random() * 5);
+	//Picks base that isn't the first one
+	do{
+		toBase = Math.floor(Math.random() * 5);
+	}while(fromBase === toBase);
+	problemNumber = Math.floor(Math.random() * (max - min) + min);
+	chooseFrom();
+	chooseTo();
+	problem.style.color = 'white';
+	if(noneSelected) {
+		problem.innerHTML = "Not enough bases selected";
+		state = TEXT_STATE;
+	}else{
+		problem.innerHTML = "Convert " + fString + problemNumber.toString(fromBase) + " to " + tString;
+		state = NUMBER_STATE;
+	}
+}
 
-		switch(toType) {
-		    case 1:
-		    	base = 'Binary';
-		    	toType = 2;
-		    	if(options.binaryON){
-		    		repeat = false;
-		    	}
-		        break;
-		    case 2:
-		    	base = 'Octal';
-		    	toType = 8;
-		    	if(options.octON){
-		    		repeat = false;
-		    	}
-		        break;
-		    case 3:
-		    	base = 'Decimal';
-		    	toType = 10;
-		    	if(options.decON){
-		    		repeat = false;
-		    	}
-		    	break;
-		    case 4:
-
-		    	base = 'Hex';
-		    	toType = 16;
-		    	if(options.hexON){
-		    		repeat = false;
-		    	}
-		    	break;
-		    default:
-		        alert('Error generating question');
+//Reads a number from the input field and compares the numerical value to the first number
+function readAndCheckInput(){
+	answerNumber = parseInt(inputField.value, toBase);
+	if(answerNumber == problemNumber){
+		problem.style.color = 'green';
+		problem.innerHTML = 'Correct. \n Press "New Question" to continue';
+	}else{
+		problem.style.color = 'red';
+		problem.innerHTML =
+		 "Wrong! \nThe correct answer was " 
+		 + problemNumber.toString(toBase);
+	}
+	state = TEXT_STATE;
+}
+//Choose from and choose to do the same thing, I need to make these into a single function. ideas?
+function chooseFrom(){
+	noneSelected = true;
+	for(let i = 0; i < 4; i++){
+		if(settings.from[i]){
+			noneSelected = false;
 		}
-
-	switch(fromType) {
-	    case 1:
-	    	fromInt = rand.toString(2);
-	    	fromType = 'Binary';
-	        break;
-	    case 2:
-	    	fromInt = rand.toString(8);
-	    	fromType = 'Octal';
-	        break;
-	    case 3:
-	    	fromInt = rand.toString(10);
-	    	fromType = 'Decimal';
-	    	break;
-	    case 4:
-	    	fromInt = rand.toString(16);
-	    	fromType = 'Hex'
-	    	break;
-	    default:
-	        alert('Error generating question');
 	}
-	var question = "Convert the " + fromType + " integer " + fromInt + " to " + base;
-	document.getElementById('Question').innerHTML = question;
-}
-function checkAnswer () { // Here I
-	userAnswer = (getAnswer()).value;
-	answer = rand.toString(toType);
-
-	console.log(
-		'userAnswer: ' + userAnswer + ' Type: ' + (typeof userAnswer) +
-		' answer: ' + answer + ' Type: ' + (typeof answer)
-		);
-	if(answer.toUpperCase() == userAnswer.toUpperCase()){
-		correct.style.color = '#43a047'; // This is how 
-		correct.innerHTML = 'Correct! ';
-		correct.style.display = 'inline';
-	
-	}else {
-		correct.style.color = '#ec407a';
-		correct.innerHTML = 'Incorrect, the answer was ' + answer;
-		correct.style.display = 'inline';
+	if(!noneSelected){
+		switch(fromBase){
+			case 1:
+				if(settings.from[0]){
+					fromBase = 2;
+					fString = B2;
+					break;
+				}
+			case 2:
+				if(settings.from[1]){
+					fromBase = 8;
+					fString = B8;
+					break;
+				}
+			case 3:
+				if(settings.from[2]){
+					fromBase = 10;
+					fString = B10;
+					break;
+				}
+			case 4:
+				if(settings.from[3]){
+					fromBase = 16;
+					fString = B16;
+					break;
+				}
+			default:
+				if(fromBase < 4){
+					fromBase++;
+				}else{
+					fromBase = 1;
+				}
+				chooseFrom();
+		}
 	}
 }
+
+function chooseTo(){
+	noneSelected = true;
+	for(let i = 0; i < 4; i++){
+		if(settings.to[i]){
+			noneSelected = false;
+		}
+	}
+	if(!noneSelected){
+		switch(toBase){
+			case 1:
+				if(settings.to[0]){
+					toBase = 2;
+					tString = B2;
+					break;
+				}
+			case 2:
+				if(settings.to[1]){
+					toBase = 8;
+					tString = B8;
+					break;
+				}
+
+			case 3:
+				if(settings.to[2]){
+					toBase = 10;
+					tString = B10;
+					break;
+				}
+			case 4:
+				if(settings.to[3]){
+					toBase = 16;
+					tString = B16;
+					break;
+				}
+			default:
+				if(toBase < 4){
+					toBase++;
+				}else{
+					toBase = 1;
+				}
+				chooseTo();
+		}
+	}
+}
+//Change settings is the callback function that gets passed to every checkbox listener
+function changeSettings(event){
+	let id = event.srcElement.id;
+	if(id[0] == 'f'){
+		settings.from[id[1]] = event.srcElement.checked;
+	} else if (id[0] == 't'){
+		settings.to[id[1]] = event.srcElement.checked;
+	}
+	console.log(settings);
+}
+
+
 window.onload = function () { //Whenever website loads, it generates a question
 	generateQuestion();
 }
-
-$("#main-btn").click(function() { // I change the text and then use that text to determine what the button does. If it says Submit I submit and vice versa
-	console.log('click');
-	if ($(this).html() == 'Submit'){
-		checkAnswer();
-		$(this).html('Next');
-	}else if ($(this).html() == 'Next'){
-		generateQuestion();
-		$(this).html('Submit');
-	}
-});
-
-$(document).ready(function(){  // This is so it listens for me to press enter. When I press enter it is equivalent to clicking the main button
-    $('#answer').keypress(function(e){
-      if(e.keyCode==13)
-      $('#main-btn').click();
-    });
-});

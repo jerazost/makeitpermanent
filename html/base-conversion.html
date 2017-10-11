@@ -12,110 +12,163 @@
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<body>
-<ul id="slide-out" class="side-nav">
-  <li>
-    <a href="../index.html">Home</a>
-  </li>
-  <li><div class="divider"></div></li>
-    <!-- Switch -->
-    <li>
-      <div class="container toggle-switch">
-        <p>Binary</p>
-        <div class="switch">
-          <label class="right" >
-            Off
-            <input type="checkbox" checked>
-            <span class="lever"></span>
-            On
-          </label>
+  <body>
+    <ul id="slide-out" class="side-nav">
+      <li>
+        <a href="../index.html">Home</a>
+      </li>
+      <li><div class="divider"></div></li>
+      <!-- Switch -->
+      <h4>From</h4>
+      <li>
+        <div class="container toggle-switch">
+          <p>Binary</p>
+          <div class="switch">
+            <label class="right" >
+              Off
+              <input type="checkbox" class="box" id="f0" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="container toggle-switch">
+          <p>Octal</p>
+          <div class="switch">
+            <label class="right">
+              Off
+              <input type="checkbox" class="box" id="f1" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="container toggle-switch">
+          <p>Decimal</p>
+          <div class="switch">
+            <label class="right">
+              Off
+              <input type="checkbox" class="box" id="f2" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="container toggle-switch">
+          <p>Hex</p>
+          <div class="switch">
+            <label class="right">
+              Off
+              <input type="checkbox" class="box" id="f3" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+      <h4>To</h4>
+      <li>
+        <div class="container toggle-switch">
+          <p>Binary</p>
+          <div class="switch">
+            <label class="right" >
+              Off
+              <input type="checkbox" class="box" id="t0" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="container toggle-switch">
+          <p>Octal</p>
+          <div class="switch">
+            <label class="right">
+              Off
+              <input type="checkbox" class="box" id="t1" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="container toggle-switch">
+          <p>Decimal</p>
+          <div class="switch">
+            <label class="right">
+              Off
+              <input type="checkbox" class="box" id="t2" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="container toggle-switch">
+          <p>Hex</p>
+          <div class="switch">
+            <label class="right">
+              Off
+              <input type="checkbox" class="box" id="t3" checked>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row problem-section valign-wrapper">
+      <a href="#" data-activates="slide-out" class="button-collapse ui-white menu"><i class="material-icons medium">menu</i></a>
+      <div class="col s12 m12 l12">
+        <div>
+          <h3 id="Question" class="valign center ui-white"></h3>
         </div>
       </div>
-    </li>
-
-    <li>
-      <div class="container toggle-switch">
-        <p>Octal</p>
-        <div class="switch">
-          <label class="right">
-            Off
-            <input type="checkbox" checked>
-            <span class="lever"></span>
-            On
-          </label>
-        </div>
-      </div>
-    </li>
-
-    <li>
-      <div class="container toggle-switch">
-        <p>Decimal</p>
-        <div class="switch">
-          <label class="right">
-            Off
-            <input type="checkbox" checked>
-            <span class="lever"></span>
-            On
-          </label>
-        </div>
-      </div>
-    </li>
-
-    <li>
-      <div class="container toggle-switch">
-        <p>Hex</p>
-        <div class="switch">
-          <label class="right">
-            Off
-            <input type="checkbox" checked>
-            <span class="lever"></span>
-            On
-          </label>
-        </div>
-      </div>
-    </li>
-
-</ul>
-
-<div class="row problem-section valign-wrapper">
-  <a href="#" data-activates="slide-out" class="button-collapse ui-white menu"><i class="material-icons medium">menu</i></a>
-  <div class="col s12 m12 l12">
-    <div>
-      <h3 id="Question" class="valign center ui-white"></h3>
     </div>
-  </div>
-</div>
 
-<div class="row answer-section valign-wrapper">
-  <div class="col s12 m12 l12">
-    <div class="container">
-      <div class="input-field col s12">
+    <div class="row answer-section valign-wrapper">
+      <div class="col s12 m12 l12">
+        <div class="container">
+          <div class="input-field col s12">
             <i class="material-icons prefix">send</i>
-            <input id="answer_input" type="number" class="validate" autofocus>
+            <input id="answer_input" type="text" class="validate" autofocus>
             <label for="answer_input">Answer</label>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="center">
+     <button type="button" class="btn" id="main-btn">Submit</button>
+     <button type="button" class="btn" id="new-btn">New Question</button>
+   </div>
+   
+
+   <div class="row">
+    <div class="col s12 center">
+      <h5 class="result" id="correct"></h5>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="container">
-    <div class="col s4 m2 l2 offset-s3 offset-m4 offset-l4">
-      <button type="button" class="btn" id="main-btn">Submit</button>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col s12 center">
-    <h5 class="result" id="correct"></h5>
-  </div>
-</div>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-<script type="text/javascript" src="../scripts/ui_script.js"></script>
-<script type="text/javascript" src="../scripts/web-script.js"></script>
-<script type="text/javascript" src="../scripts/conversions.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <script type="text/javascript" src="../scripts/ui_script.js"></script>
+  <script type="text/javascript" src="../scripts/web-script.js"></script>
+  <script type="text/javascript" src="../scripts/conversions.js"></script>
 </body>
 </html>
